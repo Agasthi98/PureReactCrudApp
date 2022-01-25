@@ -18,6 +18,7 @@ const InputForm = () => {
     e.preventDefault();
 
     const task = {
+      id: new Date().getTime().toString(),
       taskName,
     };
     setTaskList([...taskList, task]);
@@ -25,11 +26,10 @@ const InputForm = () => {
     console.log(task);
   };
 
-  const deleteTask = (taskName) => {
+  const deleteTask = (id) => {
     const filter = taskList.filter((e) => {
-      return e.taskName !== taskName;
+      return e.id !== id;
     });
-
     setTaskList(filter);
   };
 
@@ -64,7 +64,7 @@ const InputForm = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <ListView tasks={taskList} deleteTask = {deleteTask} />
+                      <ListView tasks={taskList} deleteTask={deleteTask} />
                     </tbody>
                   </table>
                 </div>
