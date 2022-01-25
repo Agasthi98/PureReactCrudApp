@@ -1,15 +1,18 @@
-import React from 'react';
+import React from "react";
+import { Button } from "react-bootstrap";
 
-const ListView = ({tasks,deleteTask}) => {
+const ListView = ({ tasks, deleteTask }) => {
   return (
-      tasks.map((post) => (
+    <>
+      {tasks.map((post) => (
         <tr key={post.id}>
-        <td>{post.taskName}</td>
-        <td> <button onClick={()=>deleteTask(post.id)}> 
-            delete</button>
-        </td>           
-    </tr>            
-      ))
+          <td>{post.taskName}</td>
+          <td>
+            <Button variant="danger" onClick={() => deleteTask(post.id)}><i class="fas fa-trash"></i></Button>
+          </td>
+        </tr>
+      ))}
+    </>
   );
 };
 
