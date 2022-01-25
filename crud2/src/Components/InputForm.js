@@ -25,49 +25,54 @@ const InputForm = () => {
     console.log(task);
   };
 
+  const deleteTask = (taskName) => {
+    const filter = taskList.filter((e) => {
+      return e.taskName !== taskName;
+    });
+
+    setTaskList(filter);
+  };
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
 
   return (
     <>
-    <div className="container">
-      <div>
-        <form onSubmit={AddTask}>
-          <input
-            type="text"
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
-            required
-          />
-          <button type="submit">Submit </button>
-        </form>
-      </div>
-
       <div className="container">
-        <center>
-        {taskList.length > 0 && (
-          <>
-            <div>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ListView tasks = {taskList} />
-                </tbody>
-              </table>
-            </div>
-            <button>
-              Remove All
-            </button>
-          </>
-        )}
-        {taskList.length < 1 && <h5>No books are added yet</h5>}
-        </center>
-      </div>
+        <div>
+          <form onSubmit={AddTask}>
+            <input
+              type="text"
+              value={taskName}
+              onChange={(e) => setTaskName(e.target.value)}
+              required
+            />
+            <button type="submit">Submit </button>
+          </form>
+        </div>
+
+        <div className="container">
+          <center>
+            {taskList.length > 0 && (
+              <>
+                <div>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Task Names</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ListView tasks={taskList} deleteTask = {deleteTask} />
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
+            {taskList.length < 1 && <h5>No books are added yet</h5>}
+          </center>
+        </div>
       </div>
     </>
   );

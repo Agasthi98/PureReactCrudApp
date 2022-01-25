@@ -1,8 +1,16 @@
 import React from 'react';
 
-const ListView = () => {
+const ListView = ({tasks,deleteTask}) => {
   return (
-      <h1>gg</h1>
+      tasks.map((post) => (
+        <tr key={post.taskName}>
+        <td>{post.taskName}</td>
+        
+        <td> <button onClick={()=>deleteTask(post.taskName)}> 
+            delete</button>
+        </td>           
+    </tr>            
+      ))
   );
 };
 
