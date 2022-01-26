@@ -28,10 +28,10 @@ const InputForm = () => {
   };
 
   const deleteTask = (id) => {
-    const filter = taskList.filter((e) => {
+    const deleteData = taskList.filter((e) => {
       return e.id !== id;
     });
-    setTaskList(filter);
+    setTaskList(deleteData);
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const InputForm = () => {
   return (
     <>
       <div className="container">
-        <div style={{ marginLeft: "10%" }}>
+        <div style={{ marginLeft: "12%" }}>
           <Form onSubmit={AddTask}>
             <FormControl
               style={{ width: "40%", marginLeft: "20%" }}
@@ -56,32 +56,32 @@ const InputForm = () => {
               variant="outline-success"
               type="submit"
             >
-              Submit{" "}
+              Submit
             </Button>
           </Form>
         </div>
+      </div>
 
-        <div className="container" style={{ marginTop: "10%" }}>
-          <center>
-            {taskList.length > 0 && (
-              <>
-                <Table striped bordered hover style={{ width: "40%" }}>
-                  <thead>
-                    <tr>
-                      <th>Task Names</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <ListView tasks={taskList} deleteTask={deleteTask} />
-                  </tbody>
-                </Table>
-              </>
-            )}
+      <div className="container" style={{ marginTop: "5%" }}>
+        <center>
+          {taskList.length > 0 && (
+            <>
+              <Table striped bordered hover style={{ width: "40%" }}>
+                <thead>
+                  <tr>
+                    <th>Task Names</th>
+                    <th style={{ width: "5px" }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ListView tasks={taskList} deleteTask={deleteTask} />
+                </tbody>
+              </Table>
+            </>
+          )}
 
-            {taskList.length < 1 && <h5>No books are added yet</h5>}
-          </center>
-        </div>
+          {taskList.length < 1 && <h5>No Tasks are added yet</h5>}
+        </center>
       </div>
     </>
   );

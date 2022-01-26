@@ -8,7 +8,7 @@ const ListView = ({ tasks, deleteTask }) => {
         <tr key={post.id}>
           <td>{post.taskName}</td>
           <td>
-            <Button variant="danger" onClick={() => deleteTask(post.id)}><i class="fas fa-trash"></i></Button>
+            <Button variant="danger" onClick={() => deleteTask(post.id)}><i className="fas fa-trash"></i></Button>
           </td>
         </tr>
       ))}
