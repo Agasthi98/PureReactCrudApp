@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
 import { local } from "./Constant";
 import { getDataFromLS } from "./Controller";
+import Message from "./Message";
 import './style.css'
 
 const InputForm = () => {
@@ -71,7 +72,7 @@ const InputForm = () => {
               </>
             )}
 
-            {taskList.length < 1 && <h5>No Tasks are added yet</h5>}
+            {taskList.length < 1 && (<Message success='No Tasks added yet' />)}
   
         </div>
       </div>
