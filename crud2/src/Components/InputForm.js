@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Form, FormControl } from "react-bootstrap";
 import ListView from "./ListView";
+import { local  } from "./Constant";
+import Controller from "./Controller";
 
-const getDatafromLS = () => {
-  const data = localStorage.getItem("tasks");
-  if (data) {
-    return JSON.parse(data);
-  } else {
-    return [];
-  }
-};
+// const getDatafromLS = () => {
+//   const data = localStorage.getItem(local);
+//   if (data) {
+//     return JSON.parse(data);
+//   } else {
+//     return [];
+//   }
+// };
 
 const InputForm = () => {
-  const [taskList, setTaskList] = useState(getDatafromLS());
+
+  const getLocalStorage = Controller()
+  const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 
-  const AddTask = (e) => {
+  const addTask = (e) => {
     e.preventDefault();
 
     const task = {
@@ -35,38 +38,36 @@ const InputForm = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(taskList));
+    localStorage.setItem(local, JSON.stringify(taskList));
   }, [taskList]);
 
   return (
     <>
       <div className="container">
-        <div style={{ marginLeft: "12%" }}>
-          <Form onSubmit={AddTask}>
-            <FormControl
-              style={{ width: "40%", marginLeft: "20%" }}
+        <div>
+          <form onSubmit={addTask}>
+            <input
               type="text"
               value={taskName}
               placeholder="Enter Task"
               onChange={(e) => setTaskName(e.target.value)}
               required
             />
-            <Button
-              style={{ marginTop: "-67px", marginLeft: "30%" }}
+            <button
               variant="outline-success"
               type="submit"
             >
               Submit
-            </Button>
-          </Form>
+            </button>
+          </form>
         </div>
       </div>
 
-      <div className="container" style={{ marginTop: "5%" }}>
+      <div className="container">
         <center>
           {taskList.length > 0 && (
             <>
-              <Table striped bordered hover style={{ width: "40%" }}>
+              <table>
                 <thead>
                   <tr>
                     <th>Task Names</th>
@@ -76,7 +77,7 @@ const InputForm = () => {
                 <tbody>
                   <ListView tasks={taskList} deleteTask={deleteTask} />
                 </tbody>
-              </Table>
+              </table>
             </>
           )}
 

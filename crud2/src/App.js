@@ -1,4 +1,3 @@
-
 import './App.css';
 import InputForm from './Components/InputForm';
 import Header from './Components/Header';

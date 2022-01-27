@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 
 const ListView = ({ tasks, deleteTask }) => {
   return (
@@ -8,7 +7,7 @@ const ListView = ({ tasks, deleteTask }) => {
         <tr key={post.id}>
           <td>{post.taskName}</td>
           <td>
-            <Button variant="danger" onClick={() => deleteTask(post.id)}><i className="fas fa-trash"></i></Button>
+            <button variant="danger" onClick={() => deleteTask(post.id)}>Delete</button>
           </td>
         </tr>
       ))}
