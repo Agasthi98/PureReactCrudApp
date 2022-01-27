@@ -3,7 +3,7 @@ import ListView from "./ListView";
 import { local } from "./Constant";
 import { getDataFromLS } from "./Controller";
 import Message from "./Message";
-import './style.css'
+import "./style.css";
 
 const InputForm = () => {
   const getLocalStorage = getDataFromLS();
@@ -40,7 +40,7 @@ const InputForm = () => {
           <div>
             <form className="form-control" onSubmit={addTask}>
               <input
-              className="nameBox"
+                className="nameBox"
                 type="text"
                 value={taskName}
                 placeholder="Enter Task"
@@ -55,25 +55,24 @@ const InputForm = () => {
         </div>
 
         <div className="table-wrapper">
-          
-            {taskList.length > 0 && (
-              <>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Task Names</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <ListView tasks={taskList} deleteTask={deleteTask} />
-                  </tbody>
-                </table>
-              </>
-            )}
+          {taskList.length > 0 && (
+            <>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Task Names</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ListView tasks={taskList} deleteTask={deleteTask} />
+                </tbody>
+              </table>
+            </>
+          )}
 
-            {taskList.length < 1 && (<Message success='No Tasks added yet' />)}
-  
+          {taskList.length < 1 && <Message success="No Tasks added yet" />}
         </div>
       </div>
     </>

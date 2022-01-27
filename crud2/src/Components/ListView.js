@@ -6,9 +6,9 @@ const ListView = ({ tasks, deleteTask }) => {
     <>
       {tasks.map((post) => (
         <tr key={post.id}>
+          <td>{post.id}</td>
           <td>{post.taskName}</td>
           <td>
-            
             <button
               className="delete-btn"
               variant="danger"
