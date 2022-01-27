@@ -3,6 +3,7 @@ import ListView from "./ListView";
 import { local } from "./Constant";
 import { getDataFromLS } from "./Controller";
 import Message from "./Message";
+import propTypes from "prop-types";
 import "./style.css";
 
 const InputForm = () => {
@@ -78,5 +79,15 @@ const InputForm = () => {
     </>
   );
 };
+
+InputForm.propTypes = {
+  tasks : propTypes.array.isRequired,
+  deleteTask : propTypes.string
+}
+
+InputForm.defaultProps = {
+  tasks : ['1', 'name'],
+  deleteTask : '1'
+}
 
 export default InputForm;
