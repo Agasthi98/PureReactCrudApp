@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
 import { local  } from "./Constant";
-import Controller from "./Controller";
+import { getDataFromLS } from "./Controller";
 
 // const getDatafromLS = () => {
 //   const data = localStorage.getItem(local);
@@ -14,7 +14,7 @@ import Controller from "./Controller";
 
 const InputForm = () => {
 
-  const getLocalStorage = Controller()
+  const getLocalStorage = getDataFromLS()
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 

@@ -1,7 +1,6 @@
-import React from "react";
 import { local } from "./Constant";
 
-const Controller = () => {
+export const getDataFromLS = () => {
   const data = localStorage.getItem(local);
   if (data) {
     return JSON.parse(data);
@@ -10,4 +9,4 @@ const Controller = () => {
   }
 };
 
-export default Controller;
+
