@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
-import { local  } from "./Constant";
+import { local } from "./Constant";
 import { getDataFromLS } from "./Controller";
-
-// const getDatafromLS = () => {
-//   const data = localStorage.getItem(local);
-//   if (data) {
-//     return JSON.parse(data);
-//   } else {
-//     return [];
-//   }
-// };
+import './style.css'
 
 const InputForm = () => {
-
-  const getLocalStorage = getDataFromLS()
+  const getLocalStorage = getDataFromLS();
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 
   const addTask = (e) => {
     e.preventDefault();
 
-    const task = {
+    const newTask = {
       id: new Date().getTime().toString(),
       taskName,
     };
-    setTaskList([...taskList, task]);
+    setTaskList([...taskList, newTask]);
     setTaskName("");
-    console.log(task);
+    console.log(newTask);
   };
 
   const deleteTask = (id) => {
@@ -43,46 +34,46 @@ const InputForm = () => {
 
   return (
     <>
-      <div className="container">
-        <div>
-          <form onSubmit={addTask}>
-            <input
-              type="text"
-              value={taskName}
-              placeholder="Enter Task"
-              onChange={(e) => setTaskName(e.target.value)}
-              required
-            />
-            <button
-              variant="outline-success"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
+      <div className="main">
+        <div className="form-wrapper">
+          <div>
+            <form className="form-control" onSubmit={addTask}>
+              <input
+              className="nameBox"
+                type="text"
+                value={taskName}
+                placeholder="Enter Task"
+                onChange={(e) => setTaskName(e.target.value)}
+                required
+              />
+              <button className="btn-submit" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
 
-      <div className="container">
-        <center>
-          {taskList.length > 0 && (
-            <>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Task Names</th>
-                    <th style={{ width: "5px" }}>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ListView tasks={taskList} deleteTask={deleteTask} />
-                </tbody>
-              </table>
-            </>
-          )}
+        <div className="table-wrapper">
+          
+            {taskList.length > 0 && (
+              <>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Task Names</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ListView tasks={taskList} deleteTask={deleteTask} />
+                  </tbody>
+                </table>
+              </>
+            )}
 
-          {taskList.length < 1 && <h5>No Tasks are added yet</h5>}
-        </center>
+            {taskList.length < 1 && <h5>No Tasks are added yet</h5>}
+  
+        </div>
       </div>
     </>
   );

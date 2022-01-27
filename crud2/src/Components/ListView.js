@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 const ListView = ({ tasks, deleteTask }) => {
   return (
@@ -7,7 +8,14 @@ const ListView = ({ tasks, deleteTask }) => {
         <tr key={post.id}>
           <td>{post.taskName}</td>
           <td>
-            <button variant="danger" onClick={() => deleteTask(post.id)}>Delete</button>
+            
+            <button
+              className="delete-btn"
+              variant="danger"
+              onClick={() => deleteTask(post.id)}
+            >
+              Delete
+            </button>
           </td>
         </tr>
       ))}
