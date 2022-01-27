@@ -86,7 +86,7 @@ InputForm.propTypes = {
 }
 
 InputForm.defaultProps = {
-  tasks : ['1', 'name'],
+  tasks : ['1','name'],
   deleteTask : '1'
 }
 
