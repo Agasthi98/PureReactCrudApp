@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
-import { local } from "./Constant";
-import { getDataFromLS } from "./Controller";
+import { getDataFromLS,setDataFromLS } from "./Controller";
 import Message from "./Message";
 import propTypes from "prop-types";
 import "./style.css";
@@ -11,17 +10,22 @@ const InputForm = () => {
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 
-  const addTask = (e) => {
-    e.preventDefault();
 
-    const newTask = {
-      id: new Date().getTime().toString(),
-      taskName,
-    };
-    setTaskList([...taskList, newTask]);
-    setTaskName("");
-    console.log(newTask);
-  };
+  
+
+
+
+  // const addTask = (e) => {
+  //   e.preventDefault();
+
+  //   // const newTask = {
+  //   //   id: new Date().getTime().toString(),
+  //   //   taskName,
+  //   // };
+  //   setTaskList([...taskList, newTask]);
+  //   setTaskName("");
+  //   console.log(newTask);
+  // };
 
   const deleteTask = (id) => {
     const deleteData = taskList.filter((e) => {
@@ -31,7 +35,7 @@ const InputForm = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem(local, JSON.stringify(taskList));
+    setDataFromLS(taskList)
   }, [taskList]);
 
   return (
@@ -39,7 +43,7 @@ const InputForm = () => {
       <div className="main">
         <div className="form-wrapper">
           <div>
-            <form className="form-control" onSubmit={addTask}>
+            <form className="form-control" >
               <input
                 className="nameBox"
                 type="text"
