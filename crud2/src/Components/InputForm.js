@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
-import { getDataFromLS,setDataFromLS } from "./Controller";
+import { getDataFromLS, setDataFromLS, addTask } from "./Controller";
 import Message from "./Message";
 import propTypes from "prop-types";
 import "./style.css";
@@ -10,23 +10,12 @@ const InputForm = () => {
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 
+  const onSubmitBtn = (e) => {
+    e.preventDefault();
+    addTask(taskName, taskList, setTaskList, setTaskName);
+  };
 
   
-
-
-
-  // const addTask = (e) => {
-  //   e.preventDefault();
-
-  //   // const newTask = {
-  //   //   id: new Date().getTime().toString(),
-  //   //   taskName,
-  //   // };
-  //   setTaskList([...taskList, newTask]);
-  //   setTaskName("");
-  //   console.log(newTask);
-  // };
-
   const deleteTask = (id) => {
     const deleteData = taskList.filter((e) => {
       return e.id !== id;
@@ -35,7 +24,7 @@ const InputForm = () => {
   };
 
   useEffect(() => {
-    setDataFromLS(taskList)
+    setDataFromLS(taskList);
   }, [taskList]);
 
   return (
@@ -43,7 +32,7 @@ const InputForm = () => {
       <div className="main">
         <div className="form-wrapper">
           <div>
-            <form className="form-control" >
+            <form className="form-control" onSubmit={onSubmitBtn}>
               <input
                 className="nameBox"
                 type="text"
@@ -85,13 +74,13 @@ const InputForm = () => {
 };
 
 InputForm.propTypes = {
-  tasks : propTypes.array.isRequired,
-  deleteTask : propTypes.string
-}
+  tasks: propTypes.array.isRequired,
+  deleteTask: propTypes.string,
+};
 
 InputForm.defaultProps = {
-  tasks : ['1','name'],
-  deleteTask : '1'
-}
+  tasks: ["1", "name"],
+  deleteTask: "1",
+};
 
 export default InputForm;

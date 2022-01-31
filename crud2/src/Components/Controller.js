@@ -11,19 +11,26 @@ export const getDataFromLS = () => {
 
 export const setDataFromLS = (taskList) => {
   localStorage.setItem(local, JSON.stringify(taskList));
-}
+};
 
+export const addTask = (taskName,taskList,setTaskList,setTaskName) => {
+  const newTask = {
+    id: new Date().getTime().toString(),
+    taskName,
+  };
+  setTaskList([...taskList, newTask])
+  setTaskName('')
+  console.log(newTask)
+};
 
+// const addTask = (e) => {
+//   e.preventDefault();
 
-
- // const addTask = (e) => {
-  //   e.preventDefault();
-
-  //   // const newTask = {
-  //   //   id: new Date().getTime().toString(),
-  //   //   taskName,
-  //   // };
-  //   setTaskList([...taskList, newTask]);
-  //   setTaskName("");
-  //   console.log(newTask);
-  // };
+//   // const newTask = {
+//   //   id: new Date().getTime().toString(),
+//   //   taskName,
+//   // };
+//   setTaskList([...taskList, newTask]);
+//   setTaskName("");
+//   console.log(newTask);
+// }
