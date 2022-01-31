@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
-import { getDataFromLS, setDataFromLS, addTask, deleteItem } from "./Controller";
-import Message from "./Message";
+import {
+  getDataFromLS,
+  setDataFromLS,
+  addTask,
+  deleteItem,
+} from "./Controller";
 import propTypes from "prop-types";
 import "../Styles/style.css";
 
@@ -15,10 +19,8 @@ const InputForm = () => {
     addTask(taskName, taskList, setTaskList, setTaskName);
   };
 
-  
   const deleteTask = (id) => {
-    
-    deleteItem(id,taskList,setTaskList)
+    deleteItem(id, taskList, setTaskList);
   };
 
   useEffect(() => {
@@ -45,27 +47,7 @@ const InputForm = () => {
             </form>
           </div>
         </div>
-
-        <div className="table-wrapper">
-          {taskList.length > 0 && (
-            <>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Task Names</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ListView tasks={taskList} deleteTask={deleteTask} />
-                </tbody>
-              </table>
-            </>
-          )}
-
-          {taskList.length < 1 && <Message success="No Tasks added yet" />}
-        </div>
+        <ListView tasks={taskList} deleteTask={deleteTask} />
       </div>
     </>
   );

@@ -1,12 +1,11 @@
 import './App.css';
-import InputForm from './Components/InputForm';
-import Header from './Components/Header';
+import BaseFile from './Components/BaseFile';
+
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <InputForm />
+      <BaseFile />
     </div>
   );
 }
