@@ -1,4 +1,4 @@
-import { local } from "./Constant";
+import { local } from "../Constants/Constant";
 
 export const getDataFromLS = () => {
   const data = localStorage.getItem(local);
@@ -23,14 +23,9 @@ export const addTask = (taskName,taskList,setTaskList,setTaskName) => {
   console.log(newTask)
 };
 
-// const addTask = (e) => {
-//   e.preventDefault();
-
-//   // const newTask = {
-//   //   id: new Date().getTime().toString(),
-//   //   taskName,
-//   // };
-//   setTaskList([...taskList, newTask]);
-//   setTaskName("");
-//   console.log(newTask);
-// }
+export const deleteItem = (id,taskList,setTaskList) => {
+  const deleteData = taskList.filter((e) => {
+    return e.id !== id;
+  });
+  setTaskList(deleteData);
+};

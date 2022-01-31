@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
-import { getDataFromLS, setDataFromLS, addTask } from "./Controller";
+import { getDataFromLS, setDataFromLS, addTask, deleteItem } from "./Controller";
 import Message from "./Message";
 import propTypes from "prop-types";
-import "./style.css";
+import "../Styles/style.css";
 
 const InputForm = () => {
   const getLocalStorage = getDataFromLS();
@@ -17,10 +17,8 @@ const InputForm = () => {
 
   
   const deleteTask = (id) => {
-    const deleteData = taskList.filter((e) => {
-      return e.id !== id;
-    });
-    setTaskList(deleteData);
+    
+    deleteItem(id,taskList,setTaskList)
   };
 
   useEffect(() => {
