@@ -20,7 +20,6 @@ export const addTask = (taskName,taskList,setTaskList,setTaskName) => {
   };
   setTaskList([...taskList, newTask])
   setTaskName('')
-  console.log(newTask)
 };
 
 export const deleteItem = (id,taskList,setTaskList) => {
