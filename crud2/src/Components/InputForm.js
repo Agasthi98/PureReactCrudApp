@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
-import {Validations, formIsSubmit} from "./Validations";
+import { Validations } from "./Validations";
 import {
   getDataFromLS,
   setDataFromLS,
   addTask,
   deleteItem,
 } from "./Controller";
-import propTypes from "prop-types";
 import "../Styles/style.css";
 
 const InputForm = () => {
@@ -15,17 +14,15 @@ const InputForm = () => {
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const onSubmitBtn = (e) => {
     e.preventDefault();
-    if(!taskName){
-      setErrors(Validations(taskName))
-    }else{
+    if (!taskName) {
+      setErrors(Validations(taskName));
+    } else {
       addTask(taskName, taskList, setTaskList, setTaskName);
     }
-   
-   
   };
 
   const deleteTask = (id) => {
@@ -43,16 +40,22 @@ const InputForm = () => {
           <div>
             <form className="form-control">
               <input
-                className = "nameBox"
-                type = "text"   
-                value = {taskName}
+                className="nameBox"
+                type="text"
+                value={taskName}
                 placeholder="Enter Task"
                 onChange={(e) => setTaskName(e.target.value)}
               />
               <div>
-              {errors.taskName && <h6 className="errorMsg">{errors.taskName}</h6>}
+                {errors.taskName && (
+                  <h6 className="errorMsg">{errors.taskName}</h6>
+                )}
               </div>
-              <button className="btn-submit" type="submit"onClick={onSubmitBtn} >
+              <button
+                className="btn-submit"
+                type="submit"
+                onClick={onSubmitBtn}
+              >
                 Submit
               </button>
             </form>
@@ -64,14 +67,6 @@ const InputForm = () => {
   );
 };
 
-InputForm.propTypes = {
-  tasks: propTypes.array.isRequired,
-  deleteTask: propTypes.string,
-};
 
-InputForm.defaultProps = {
-  tasks: ["1", "name"],
-  deleteTask: "1",
-};
 
 export default InputForm;

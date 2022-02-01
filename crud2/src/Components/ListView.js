@@ -1,5 +1,6 @@
 import React from "react";
 import Message from "./Message";
+import propTypes from "prop-types";
 import "../Styles/style.css";
 
 const ListView = ({ tasks, deleteTask }) => {
@@ -41,6 +42,16 @@ const ListView = ({ tasks, deleteTask }) => {
       </div>
     </>
   );
+};
+
+ListView.propTypes = {
+  tasks: propTypes.array.isRequired,
+  deleteTask: propTypes.string,
+};
+
+ListView.defaultProps = {
+  tasks: ["1", "name"],
+  deleteTask: "1",
 };
 
 export default ListView;
