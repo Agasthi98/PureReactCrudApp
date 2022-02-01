@@ -32,16 +32,15 @@ const InputForm = () => {
       <div className="main">
         <div className="form-wrapper">
           <div>
-            <form className="form-control" onSubmit={onSubmitBtn}>
+            <form className="form-control">
               <input
                 className="nameBox"
                 type="text"
                 value={taskName}
                 placeholder="Enter Task"
                 onChange={(e) => setTaskName(e.target.value)}
-                required
               />
-              <button className="btn-submit" type="submit">
+              <button className="btn-submit" type="submit"onClick={onSubmitBtn} >
                 Submit
               </button>
             </form>
