@@ -4,6 +4,5 @@ export const Validations = (taskName) => {
   if (!taskName.taskName) {
     errors.taskName = "Name is required";
   }
-
   return errors;
 };
