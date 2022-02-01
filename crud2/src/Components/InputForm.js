@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListView from "./ListView";
+import {Validations, formIsSubmit} from "./Validations";
 import {
   getDataFromLS,
   setDataFromLS,
@@ -9,14 +10,22 @@ import {
 import propTypes from "prop-types";
 import "../Styles/style.css";
 
-const InputForm = () => {
+const InputForm = ({values}) => {
   const getLocalStorage = getDataFromLS();
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
 
+  const [errors, setErrors] = useState({})
+
   const onSubmitBtn = (e) => {
     e.preventDefault();
-    addTask(taskName, taskList, setTaskList, setTaskName);
+    if(!taskName){
+      setErrors(Validations(taskName))
+    }else{
+      addTask(taskName, taskList, setTaskList, setTaskName);
+    }
+   
+   
   };
 
   const deleteTask = (id) => {
@@ -34,12 +43,15 @@ const InputForm = () => {
           <div>
             <form className="form-control">
               <input
-                className="nameBox"
-                type="text"
-                value={taskName}
+                className = "nameBox"
+                type = "text"   
+                value = {taskName}
                 placeholder="Enter Task"
                 onChange={(e) => setTaskName(e.target.value)}
               />
+              <div>
+              {errors.taskName && <h6 className="errorMsg">{errors.taskName}</h6>}
+              </div>
               <button className="btn-submit" type="submit"onClick={onSubmitBtn} >
                 Submit
               </button>
