@@ -10,7 +10,7 @@ import {
 import propTypes from "prop-types";
 import "../Styles/style.css";
 
-const InputForm = ({values}) => {
+const InputForm = () => {
   const getLocalStorage = getDataFromLS();
   const [taskList, setTaskList] = useState(getLocalStorage);
   const [taskName, setTaskName] = useState("");
